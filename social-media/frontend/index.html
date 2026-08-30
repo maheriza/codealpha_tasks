@@ -1,0 +1,984 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>MiniSocial</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- =====================================================
+       NAVBAR
+       ===================================================== -->
+
+  <nav class="navbar">
+
+    <div class="navbar-inner">
+
+      <div class="brand" data-nav="feed">
+        Mini<span>Social</span>
+      </div>
+
+      <div class="nav-search">
+
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="🔍 Search people..."
+        >
+
+        <div
+          id="searchResults"
+          class="search-results hidden">
+        </div>
+
+      </div>
+
+      <div class="nav-actions">
+
+        <button
+          id="navFeedBtn"
+          class="nav-link active"
+          data-nav="feed">
+          🏠 Feed
+        </button>
+
+        <button
+          id="navProfileBtn"
+          class="nav-link"
+          data-nav="profile">
+          👤 Profile
+        </button>
+
+        <button
+          id="logoutBtn"
+          class="nav-link hidden">
+          🚪 Log out
+        </button>
+
+      </div>
+
+    </div>
+
+  </nav>
+
+
+  <!-- =====================================================
+       MAIN APP
+       ===================================================== -->
+
+  <main id="app" class="container">
+
+
+    <!-- ===================================================
+         LOGIN / LANDING PAGE
+         =================================================== -->
+
+    <section id="authView" class="view">
+
+      <div class="landing-page">
+
+        <div class="landing-content">
+
+          <div class="landing-badge">
+            ✨ Welcome to MiniSocial
+          </div>
+
+          <h1>
+            Connect.
+            <span>Share.</span>
+            Inspire.
+          </h1>
+
+          <p class="landing-description">
+            Share your moments, meet interesting people,
+            and discover what's happening around your
+            social community.
+          </p>
+
+          <div class="landing-features">
+
+            <div class="feature">
+
+              <div class="feature-icon purple">
+                👥
+              </div>
+
+              <div>
+                <strong>Meet People</strong>
+
+                <p>
+                  Discover interesting people
+                  and connect with them.
+                </p>
+              </div>
+
+            </div>
+
+
+            <div class="feature">
+
+              <div class="feature-icon pink">
+                💬
+              </div>
+
+              <div>
+                <strong>Share Moments</strong>
+
+                <p>
+                  Share thoughts, photos and
+                  experiences.
+                </p>
+              </div>
+
+            </div>
+
+
+            <div class="feature">
+
+              <div class="feature-icon blue">
+                ❤️
+              </div>
+
+              <div>
+                <strong>Stay Connected</strong>
+
+                <p>
+                  Like, comment and interact
+                  with your community.
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- LANDING VISUAL -->
+
+        <div class="landing-images">
+
+          <div class="visual-card visual-main">
+            <div class="visual-emoji">
+              🌎
+            </div>
+
+            <h3>
+              Your world.
+            </h3>
+
+            <p>
+              Your people.
+            </p>
+
+            <div class="visual-bubbles">
+              <span>😊</span>
+              <span>❤️</span>
+              <span>✨</span>
+              <span>🌈</span>
+            </div>
+          </div>
+
+
+          <div class="visual-card visual-small visual-one">
+            📸
+          </div>
+
+          <div class="visual-card visual-small visual-two">
+            💜
+          </div>
+
+          <div class="visual-card visual-small visual-three">
+            🌟
+          </div>
+
+          <div class="floating-heart">
+            ❤️
+          </div>
+
+          <div class="floating-star">
+            ⭐
+          </div>
+
+          <div class="floating-smile">
+            😊
+          </div>
+
+        </div>
+
+
+        <!-- LOGIN -->
+
+        <div class="auth-card">
+
+          <div class="auth-logo">
+            Mini<span>Social</span>
+          </div>
+
+          <p class="auth-welcome">
+            Welcome back! 👋
+          </p>
+
+
+          <div class="auth-tabs">
+
+            <button
+              id="tabLogin"
+              class="auth-tab active">
+              Log In
+            </button>
+
+            <button
+              id="tabRegister"
+              class="auth-tab">
+              Sign Up
+            </button>
+
+          </div>
+
+
+          <form
+            id="loginForm"
+            class="auth-form">
+
+            <label>
+              Username or Email
+            </label>
+
+            <input
+              type="text"
+              id="loginUsername"
+              placeholder="Enter your username"
+              required
+            >
+
+            <label>
+              Password
+            </label>
+
+            <input
+              type="password"
+              id="loginPassword"
+              placeholder="Enter your password"
+              required
+            >
+
+            <button
+              type="submit"
+              class="btn-primary auth-button">
+              🚀 Log In
+            </button>
+
+            <p
+              class="auth-error"
+              id="loginError">
+            </p>
+
+          </form>
+
+
+          <form
+            id="registerForm"
+            class="auth-form hidden">
+
+            <label>
+              Username
+            </label>
+
+            <input
+              type="text"
+              id="regUsername"
+              placeholder="Choose a username"
+              required
+            >
+
+            <label>
+              Email
+            </label>
+
+            <input
+              type="email"
+              id="regEmail"
+              placeholder="Enter your email"
+              required
+            >
+
+            <label>
+              Password
+            </label>
+
+            <input
+              type="password"
+              id="regPassword"
+              placeholder="Create a password"
+              required
+              minlength="6"
+            >
+
+            <label>
+              Bio
+            </label>
+
+            <textarea
+              id="regBio"
+              rows="2"
+              placeholder="Tell us about yourself...">
+            </textarea>
+
+            <button
+              type="submit"
+              class="btn-primary auth-button">
+              ✨ Create Account
+            </button>
+
+            <p
+              class="auth-error"
+              id="registerError">
+            </p>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         FEED PAGE
+         =================================================== -->
+
+    <section
+      id="feedView"
+      class="view hidden">
+
+
+      <!-- FEED HERO -->
+
+      <div class="feed-hero">
+
+        <div class="feed-hero-content">
+
+          <div class="hero-small-text">
+            ✨ YOUR SOCIAL SPACE
+          </div>
+
+          <h1>
+            What's happening
+            <span>today?</span>
+          </h1>
+
+          <p>
+            Share your thoughts, discover new people,
+            and explore what's happening in your community.
+          </p>
+
+
+          <div class="hero-stats">
+
+            <div>
+              <strong>🌎</strong>
+              <span>Explore</span>
+            </div>
+
+            <div>
+              <strong>❤️</strong>
+              <span>Connect</span>
+            </div>
+
+            <div>
+              <strong>✨</strong>
+              <span>Share</span>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- HERO ART -->
+
+        <div class="hero-image">
+
+          <div class="hero-art">
+
+            <div class="art-sun">
+              ☀️
+            </div>
+
+            <div class="art-cloud cloud-one">
+              ☁️
+            </div>
+
+            <div class="art-cloud cloud-two">
+              ☁️
+            </div>
+
+            <div class="art-person person-one">
+              🧑
+            </div>
+
+            <div class="art-person person-two">
+              👩
+            </div>
+
+            <div class="art-person person-three">
+              🧑‍🦱
+            </div>
+
+            <div class="art-heart">
+              ❤️
+            </div>
+
+            <div class="art-star">
+              ⭐
+            </div>
+
+            <div class="art-ground">
+            </div>
+
+          </div>
+
+
+          <div class="hero-floating-card">
+            ❤️ 1.2K people are connecting
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- FEED LAYOUT -->
+
+      <div class="feed-layout">
+
+
+        <!-- =================================================
+             MAIN FEED
+             ================================================= -->
+
+        <div class="feed-main">
+
+
+          <!-- CREATE POST -->
+
+          <div class="composer card">
+
+            <div class="composer-title">
+
+              <div>
+
+                <strong>
+                  Create a post
+                </strong>
+
+                <small>
+                  Share something with the community ✨
+                </small>
+
+              </div>
+
+              <span class="composer-icon">
+                ✍️
+              </span>
+
+            </div>
+
+
+            <div class="composer-row">
+
+              <div
+                class="avatar"
+                id="composerAvatar">
+              </div>
+
+              <textarea
+                id="postContent"
+                placeholder="What's on your mind? 💭"
+                rows="3">
+              </textarea>
+
+            </div>
+
+
+            <div class="composer-actions">
+
+              <input
+                type="text"
+                id="postImageUrl"
+                placeholder="🖼️ Image URL (optional)"
+              >
+
+              <button
+                id="submitPostBtn"
+                class="btn-primary">
+                🚀 Post
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <!-- FEED NAVIGATION -->
+
+          <div class="feed-navigation">
+
+            <div class="feed-tabs">
+
+              <button
+                id="tabGlobal"
+                class="feed-tab active">
+                🌎 Explore
+              </button>
+
+              <button
+                id="tabFollowing"
+                class="feed-tab">
+                👥 Following
+              </button>
+
+            </div>
+
+            <div class="feed-filter">
+              ✨ Latest
+            </div>
+
+          </div>
+
+
+          <!-- POSTS -->
+
+          <div id="postsContainer">
+          </div>
+
+        </div>
+
+
+        <!-- =================================================
+             SIDEBAR
+             ================================================= -->
+
+        <aside class="feed-sidebar">
+
+
+          <!-- MINI PROFILE -->
+
+          <div class="mini-profile card">
+
+            <div class="mini-profile-cover">
+
+              <div class="cover-stars">
+                ✨ ⭐ ✨
+              </div>
+
+            </div>
+
+            <div class="mini-profile-body">
+
+              <div
+                class="avatar mini-avatar"
+                id="sideAvatar">
+              </div>
+
+              <h3 id="sideUsername">
+                Welcome 👋
+              </h3>
+
+              <p>
+                Join the conversation and
+                share your world.
+              </p>
+
+              <button
+                class="side-profile-button"
+                data-nav="profile">
+                👤 View Profile
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <!-- SUGGESTED PEOPLE -->
+
+          <div class="suggested-card card">
+
+            <div class="side-title">
+
+              <h3>
+                👥 People you may know
+              </h3>
+
+              <span>
+                ✨
+              </span>
+
+            </div>
+
+            <div id="suggestedUsers">
+            </div>
+
+          </div>
+
+
+          <!-- TRENDING -->
+
+          <div class="trending-card card">
+
+            <div class="side-title">
+
+              <h3>
+                🔥 Trending
+              </h3>
+
+              <span>
+                🔥
+              </span>
+
+            </div>
+
+
+            <div class="trend-item">
+
+              <span class="trend-number">
+                01
+              </span>
+
+              <div>
+                <strong>
+                  #MiniSocial
+                </strong>
+
+                <small>
+                  2.4K posts
+                </small>
+              </div>
+
+            </div>
+
+
+            <div class="trend-item">
+
+              <span class="trend-number">
+                02
+              </span>
+
+              <div>
+                <strong>
+                  #Weekend
+                </strong>
+
+                <small>
+                  1.8K posts
+                </small>
+              </div>
+
+            </div>
+
+
+            <div class="trend-item">
+
+              <span class="trend-number">
+                03
+              </span>
+
+              <div>
+                <strong>
+                  #Photography
+                </strong>
+
+                <small>
+                  1.2K posts
+                </small>
+              </div>
+
+            </div>
+
+
+            <div class="trend-item">
+
+              <span class="trend-number">
+                04
+              </span>
+
+              <div>
+                <strong>
+                  #Friends
+                </strong>
+
+                <small>
+                  980 posts
+                </small>
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- COMMUNITY CARD -->
+
+          <div class="community-card">
+
+            <div class="community-art">
+
+              <div class="community-sun">
+                ☀️
+              </div>
+
+              <div class="community-people">
+                👩 🧑 👨 👩
+              </div>
+
+              <div class="community-heart">
+                ❤️
+              </div>
+
+            </div>
+
+            <div class="community-text">
+
+              <strong>
+                Life is better together 💜
+              </strong>
+
+              <span>
+                Connect with your community
+              </span>
+
+            </div>
+
+          </div>
+
+
+        </aside>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         PROFILE PAGE
+         =================================================== -->
+
+    <section
+      id="profileView"
+      class="view hidden">
+
+      <div class="profile-header card">
+
+        <div
+          class="avatar avatar-lg"
+          id="profileAvatar">
+        </div>
+
+        <div class="profile-info">
+
+          <h2 id="profileUsername"></h2>
+
+          <p
+            id="profileBio"
+            class="profile-bio">
+          </p>
+
+          <div class="profile-stats">
+
+            <span>
+              <strong id="statPosts">0</strong>
+              Posts
+            </span>
+
+            <span
+              class="stat-link"
+              id="statFollowers">
+
+              <strong>
+                0
+              </strong>
+
+              Followers
+
+            </span>
+
+            <span
+              class="stat-link"
+              id="statFollowing">
+
+              <strong>
+                0
+              </strong>
+
+              Following
+
+            </span>
+
+          </div>
+
+          <button
+            id="followBtn"
+            class="btn-primary hidden">
+            ➕ Follow
+          </button>
+
+          <button
+            id="editProfileBtn"
+            class="btn-secondary hidden">
+            ✏️ Edit Profile
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- EDIT PROFILE -->
+
+      <div
+        id="editProfileForm"
+        class="card hidden">
+
+        <label>
+          Bio
+        </label>
+
+        <textarea
+          id="editBio"
+          rows="2"
+          placeholder="Tell people about yourself">
+        </textarea>
+
+        <label>
+          Avatar URL
+        </label>
+
+        <input
+          type="text"
+          id="editAvatar"
+          placeholder="https://..."
+        >
+
+        <button
+          id="saveProfileBtn"
+          class="btn-primary">
+          💾 Save Changes
+        </button>
+
+      </div>
+
+
+      <div id="profilePosts">
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================
+         FOLLOW MODAL
+         =================================================== -->
+
+    <div
+      id="followModal"
+      class="modal hidden">
+
+      <div class="modal-content card">
+
+        <div class="modal-header">
+
+          <h3 id="followModalTitle">
+            Users
+          </h3>
+
+          <button
+            id="closeFollowModal"
+            class="btn-icon">
+            &times;
+          </button>
+
+        </div>
+
+        <div id="followModalList">
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- ===================================================
+         POST MODAL
+         =================================================== -->
+
+    <div
+      id="postModal"
+      class="modal hidden">
+
+      <div class="modal-content card">
+
+        <div class="modal-header">
+
+          <h3>
+            💬 Post
+          </h3>
+
+          <button
+            id="closePostModal"
+            class="btn-icon">
+            &times;
+          </button>
+
+        </div>
+
+        <div id="postModalBody">
+        </div>
+
+        <div class="comment-composer">
+
+          <input
+            type="text"
+            id="commentInput"
+            placeholder="Write a comment... 💬"
+          >
+
+          <button
+            id="submitCommentBtn"
+            class="btn-primary">
+            Send
+          </button>
+
+        </div>
+
+        <div id="commentsList">
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+
+  <!-- TOAST -->
+
+  <div
+    id="toast"
+    class="toast hidden">
+  </div>
+
+
+  <script src="app.js"></script>
+
+</body>
+
+</html>
